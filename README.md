@@ -1,5 +1,5 @@
 
-# Python Attributes Functions Lab
+# Object Oriented Attributes With Functions - Lab
 
 ## Introduction
 We've been learning a lot about different parts of object oriented programming. We learned about classes and what purpose they serve. We've seen instance objects, instance variables, and instance methods and how these things all work with each other. In this lab, we will talk about what a **domain model** is and how it ties into object oriented programming.
