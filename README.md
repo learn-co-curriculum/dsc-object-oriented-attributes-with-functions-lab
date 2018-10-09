@@ -6,6 +6,8 @@ We've been learning a lot about different parts of object oriented programming. 
 
 ## Objectives
 
+You will be able to:
+
 * Understand the concept of a domain model
 * Create a domain model
 * Define instance methods that operate on nested data structures
