@@ -2,7 +2,7 @@
 # Object Oriented Attributes With Functions - Lab
 
 ## Introduction
-We've been learning a lot about different parts of object oriented programming. We learned about classes and what purpose they serve. We've seen instance objects, instance variables, and instance methods and how these things all work with each other. In this lab, we will talk about what a **domain model** is and how it ties into object oriented programming.
+You've been learning a lot about different parts of object oriented programming. You've learned about classes and what purpose they serve. You've seen instance objects, instance variables, and instance methods and how these things all work with each other. In this lab, you'll learn what a **domain model** is and how it ties into object oriented programming.
 
 ## Objectives
 
@@ -14,18 +14,27 @@ You will be able to:
 
 ## What Is a Domain Model?
 
-A domain model is the representation of a real-world concept or structure translated in to software. This is a key function of object orientation. So far, our Python classes have been used as blueprints or templates for  instance objects of that class. As an example, a Driver class would create driver instance objects, and the class would define a basic structure for what that driver instance object should look like and what capabilities it should have. But a class is only one part of a domain model just as, typically, a driver is only one part of a larger structure.
+A domain model is the representation of a real-world concept or structure translated in to software. This is a key function of object orientation. So far, your Python classes have been used as blueprints or templates for  instance objects of that class. As an example, a Driver class would create driver instance objects, and the class would define a basic structure for what that driver instance object should look like and what capabilities it should have. But a class is only one part of a domain model just as, typically, a driver is only one part of a larger structure.
 
-A domain model is meant to mirror that larger, real-world structure. It is more than just one class, it is an entire environment that often depends on other parts or classes to function properly. So, in keeping with a Driver class, we could use the example of a taxi and limousine service as our domain model. There are many more parts to a service like this than drivers alone. We could imagine dispatchers, mechanics, accountants, passengers, etc., all being part of the structure of this domain model. In a simplified example, we could have instance and class methods handle things like `dispatch_driver`, `calculate_revenue_from_rides`, `service_taxi`, or any other function of a taxi and limousine service.
+A domain model is meant to mirror that larger, real-world structure. It is more than just one class, it is an entire environment that often depends on other parts or classes to function properly. So, in keeping with a Driver class, you could use the example of a taxi and limousine service as our domain model. There are many more parts to a service like this than drivers alone. You could imagine dispatchers, mechanics, accountants, passengers, etc., all being part of the structure of this domain model. In a simplified example, you could have instance and class methods handle things like `dispatch_driver`, `calculate_revenue_from_rides`, `service_taxi`, or any other function of a taxi and limousine service.
 
-As we become more fluent in object oriented programming and our programs become more complex, we will see that the other parts of a domain model like passengers, dispatchers, etc., will be classes of their own which interact with each other. 
+As you become more fluent in object oriented programming and our programs become more complex, you will see that the other parts of a domain model like passengers, dispatchers, etc., will be classes of their own which interact with each other. 
 
-In this lab, we will be using a school as our domain model.
+In this lab, you'll be using a school as our domain model.
 
-### Part 1:
-Create a class, School, in the school.py file in your local directory that can be initialized with a name. The School class would be referred to as a "model" in the domain model context.
+## Creating a Simple School Class
 
-> **Note:** In this lab, we will be updating our `School` class with instance methods. If you would like to test each method as you go, remember to re-run the next cell to re-import your code. Otherwise, the jupyter notebook will not have read any of your updated code.
+To start, open up the **school.py** file in your text editor of choice such as Atom, Sublime, or a simple notepad program. Within this file, create a `School` class definition which will be initialized with the name of the school.
+
+> **Note:** the next cell imports an extension, `autoreload`, from IPython. The autoreload extension reloads any imported packages when methods from that package are called. While this is inefficient for stable packages such as NumPy which will be static while working in a notebook, the autoreload extension is quite useful when developing a package yourself. That is, you can update a package such as school.py and then test the effects in a notebook; with the autoreload extension, you'll see the effects of your changes to the package reflected. 
+
+>> If you still have trouble with cells reflecting updates to the **school.py** file as you go along, go to the Kernel tab at the top of the jupyter notebook and click "Restart & Run All". This should smoothly run everything up to where you're working.
+
+
+```python
+%load_ext autoreload
+%autoreload 2
+```
 
 
 ```python
@@ -37,63 +46,54 @@ from school import School
 school = School("Middletown High School")
 ```
 
-### Part 2:
-A school should have a roster, which should be an empty dictionary upon initialization but will be built-out to contain keys of grade levels. The value of each key will be a list of student names (i.e. `{"9": ["John Smith", "Jane Donahue"]}`).
+## Updating the __init__ method
+
+Great! Now, update you `School` definition in school.py to also include a `roster` attribute upon initialization. Initialize the `roster` attribute as an empty dictionary. Later, you'll use this empty roster dictionary to list students of each grade. For example, a future entry in the roster dictionary could be `{"9": ["John Smith", "Jane Donahue"]}`).
 
 
 ```python
-school.roster() #{}
+school = School("Middletown High School") #You must reinstantiate the object since you've modified the class definition!
+school.roster #{}
 ```
 
-### Part 3:
-You should be able to add a student to the school by calling the add_student method and giving it an argument of the student's name and their grade.
+
+
+
+    {}
+
+
+
+## Adding Methods
+
+### Method 1: `add_student()`
+Now add a method `add_student` which takes 2 arguments: a student's full name and their grade level, and updates the roster dictionary accordingly. 
 
 
 ```python
+school = School("Middletown High School") #Again, you must reinstantiate since you've modified the class!
 school.add_student("Peter Piper", 12)
-school.roster() #{"12": ["Peter Piper"]}
+school.roster #{"12": ["Peter Piper"]}
 ```
 
-> **Hint:** if the dictionary starts out empty, how will we add keys which initially point to empty lists as their value? Let's look at an example below:
 
 
-```python
-new_dict = {}
-```
 
-We start out with our empty dictionary and we want to add a student from the 10th grade, Timmy Turner, to our dictionary. The number `10` will be the key and it should point to an array containing the string `"Timmy Turner"`. Let's see if we can create a new key and add the name at the same time.
-
-```pyhon
-new_dict[10].append("Timmy Turner")
-
--------------------------------------------------------------------
-KeyError                          Traceback (most recent call last)
-<ipython-input-37-e74b24b6fe3b> in <module>()
-----> 1 new_dict[10].append("Timmy Turner")
-
-KeyError: 10
-```
-
-Okay, so we see we get a KeyError because our dictionary doesn't yet have the key `10`, so, we can't just directly operate on it. So, to start we have to add the key and set an initial value for it.
+    {12: ['Peter Piper']}
 
 
-```python
-new_dict[10] = []
-new_dict[10].append("Timmy Turner")
-new_dict
-```
 
-Awesome! So, we now know how to add a key and set its initial value when the key does not yet exist in our dictionary.
+> **Hint:** If you're stuck, don't fret; this one's a little tricky. You need to consider two scenarios.
+    1. There is no entry for this grade yet in the roster dictionary:
+        1. Add an entry to the roster dictionary with the grade key and a single item list using the name
+    2. There is an entry for this grade in the roster dictionary:
+        1. Append the current name to the list associated with that grade
+        
+>> Going further: if you're really ambitious, you can actually combine both of these conditions into a single line using the `.get()` method with dictionaries. Here's the docstring for the `.get()` method:  
+get(key[, default])  
+    Return the value for key if key is in the dictionary, else default. If default is not given, it defaults to None, so that this method never raises a KeyError.
 
-Remember, next time we add a student from grade `10` we do not want to reinitialize our list, we just want to add the name to the list that already exists. 
 
-
-```python
-# add Sofia Santana to grade 10
-new_dict[10].append("Sofia Santana")
-```
-
-Now write the class function, `add_student` that takes in the grade and the name of the student and adds them to the school's roster and returns the new roster.
+To make sure your method works for both scenarios, run the cell below.
 
 
 ```python
@@ -101,19 +101,43 @@ school.add_student("Kelly Slater", 9)
 school.add_student("Tony Hawk", 10)
 school.add_student("Ryan Sheckler", 10)
 school.add_student("Bethany Hamilton", 11)
-school.roster() # {9: ["Kelly Slater"], 10: ["Tony Hawk", "Ryan Sheckler"], 11: ["Bethany Hamilton"], 12: ["Peter Piper"]}
+school.roster # {9: ["Kelly Slater"], 10: ["Tony Hawk", "Ryan Sheckler"], 11: ["Bethany Hamilton"], 12: ["Peter Piper"]}
 ```
 
-### Part 4:
-Next, define a method called `grade`, which should take in an argument of a grade and return a list of all the students in that grade:
+
+
+
+    {12: ['Peter Piper'],
+     9: ['Kelly Slater'],
+     10: ['Tony Hawk', 'Ryan Sheckler'],
+     11: ['Bethany Hamilton']}
+
+
+
+### Method 2: `grade()`
+Next, define a method called `grade`, which should take in an argument of a grade and return a list of all the students in that grade. 
+
+
 
 
 ```python
+#While annoying, you do need to reinstantiate the updated class and repform the previous methods
+school = School("Middletown High School") 
+school.add_student("Peter Piper", 12)
+school.add_student("Kelly Slater", 9)
+school.add_student("Tony Hawk", 10)
+school.add_student("Ryan Sheckler", 10)
+school.add_student("Bethany Hamilton", 11)
+#Testing out your new method:
 print(school.grade(10)) # ["Tony Hawk", "Ryan Sheckler"]
 print(school.grade(12)) # ["Peter Piper"]
 ```
 
-### Part 5:
+    ['Tony Hawk', 'Ryan Sheckler']
+    ['Peter Piper']
+
+
+### Method 3: `sort_roster()`
 Define a method called `sort_roster` that returns the school's roster where the strings in the student arrays are sorted alphabetically. For instance:
 `{9: ["Kelly Slater"], 10: ["Ryan Sheckler", "Tony Hawk"], 11: ["Bethany Hamilton"], 12: ["Peter Piper"]}}`
 
@@ -124,5 +148,15 @@ Define a method called `sort_roster` that returns the school's roster where the 
 school.sort_roster()
 ```
 
+
+
+
+    {12: ['Peter Piper'],
+     9: ['Kelly Slater'],
+     10: ['Ryan Sheckler', 'Tony Hawk'],
+     11: ['Bethany Hamilton']}
+
+
+
 ## Summary
-In this lab, we were able to mimic a complex domain model using a School class with a few instance methods and variables. Soon we will see that our domain models will use other classes, instance methods, and instance variables to create more functionality in our programs.
+In this lab, you continued to pracitce OOP, designing a more complex domain model using a School class with a few instance methods and variables. Soon you'll see that domain models can use other classes, instance methods, and instance variables to create more functionality in your programs.
