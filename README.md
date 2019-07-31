@@ -48,12 +48,45 @@ from school import School
 school = School("Middletown High School")
 ```
 
+
+```python
+# __SOLUTION__ 
+%load_ext autoreload
+%autoreload 2
+```
+
+
+```python
+# __SOLUTION__ 
+from school import School
+```
+
+
+```python
+# __SOLUTION__ 
+school = School("Middletown High School")
+```
+
 ## Updating the __init__ method
 
 Great! Now, update you `School` definition in school.py to also include a `roster` attribute upon initialization. Initialize the `roster` attribute as an empty dictionary. Later, you'll use this empty roster dictionary to list students of each grade. For example, a future entry in the roster dictionary could be `{"9": ["John Smith", "Jane Donahue"]}`).
 
 
 ```python
+school = School("Middletown High School") #You must reinstantiate the object since you've modified the class definition!
+school.roster #{}
+```
+
+
+
+
+    {}
+
+
+
+
+```python
+# __SOLUTION__ 
 school = School("Middletown High School") #You must reinstantiate the object since you've modified the class definition!
 school.roster #{}
 ```
@@ -72,6 +105,21 @@ Now add a method `add_student` which takes 2 arguments: a student's full name an
 
 
 ```python
+school = School("Middletown High School") #Again, you must reinstantiate since you've modified the class!
+school.add_student("Peter Piper", 12)
+school.roster #{"12": ["Peter Piper"]}
+```
+
+
+
+
+    {12: ['Peter Piper']}
+
+
+
+
+```python
+# __SOLUTION__ 
 school = School("Middletown High School") #Again, you must reinstantiate since you've modified the class!
 school.add_student("Peter Piper", 12)
 school.roster #{"12": ["Peter Piper"]}
@@ -116,6 +164,26 @@ school.roster # {9: ["Kelly Slater"], 10: ["Tony Hawk", "Ryan Sheckler"], 11: ["
 
 
 
+
+```python
+# __SOLUTION__ 
+school.add_student("Kelly Slater", 9)
+school.add_student("Tony Hawk", 10)
+school.add_student("Ryan Sheckler", 10)
+school.add_student("Bethany Hamilton", 11)
+school.roster # {9: ["Kelly Slater"], 10: ["Tony Hawk", "Ryan Sheckler"], 11: ["Bethany Hamilton"], 12: ["Peter Piper"]}
+```
+
+
+
+
+    {12: ['Peter Piper'],
+     9: ['Kelly Slater'],
+     10: ['Tony Hawk', 'Ryan Sheckler'],
+     11: ['Bethany Hamilton']}
+
+
+
 ### Method 2: `grade()`
 Next, define a method called `grade`, which should take in an argument of a grade and return a list of all the students in that grade. 
 
@@ -123,6 +191,25 @@ Next, define a method called `grade`, which should take in an argument of a grad
 
 
 ```python
+#While annoying, you do need to reinstantiate the updated class and repform the previous methods
+school = School("Middletown High School") 
+school.add_student("Peter Piper", 12)
+school.add_student("Kelly Slater", 9)
+school.add_student("Tony Hawk", 10)
+school.add_student("Ryan Sheckler", 10)
+school.add_student("Bethany Hamilton", 11)
+#Testing out your new method:
+print(school.grade(10)) # ["Tony Hawk", "Ryan Sheckler"]
+print(school.grade(12)) # ["Peter Piper"]
+```
+
+    ['Tony Hawk', 'Ryan Sheckler']
+    ['Peter Piper']
+
+
+
+```python
+# __SOLUTION__ 
 #While annoying, you do need to reinstantiate the updated class and repform the previous methods
 school = School("Middletown High School") 
 school.add_student("Peter Piper", 12)
@@ -147,6 +234,22 @@ Define a method called `sort_roster` that returns the school's roster where the 
 
 
 ```python
+school.sort_roster()
+```
+
+
+
+
+    {12: ['Peter Piper'],
+     9: ['Kelly Slater'],
+     10: ['Ryan Sheckler', 'Tony Hawk'],
+     11: ['Bethany Hamilton']}
+
+
+
+
+```python
+# __SOLUTION__ 
 school.sort_roster()
 ```
 
