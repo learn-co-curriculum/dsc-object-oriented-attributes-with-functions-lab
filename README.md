@@ -18,13 +18,13 @@ A domain model is the representation of a real-world concept or structure transl
 
 A domain model is meant to mirror that larger, real-world structure. It is more than just one class, it is an entire environment that often depends on other parts or classes to function properly. So, in keeping with a Driver class, you could use the example of a taxi and limousine service as our domain model. There are many more parts to a service like this than drivers alone. You could imagine dispatchers, mechanics, accountants, passengers, etc., all being part of the structure of this domain model. In a simplified example, you could have instance and class methods handle things like `dispatch_driver`, `calculate_revenue_from_rides`, `service_taxi`, or any other function of a taxi and limousine service.
 
-As you become more fluent in object-oriented programming and our programs become more complex, you will see that the other parts of a domain model like passengers, dispatchers, etc., will be classes of their own which interact with each other. 
+As you become more fluent in object-oriented programming and our programs become more complex, you will see that the other parts of a domain model like passengers, dispatchers, etc., will be classes of their own that interact with each other. 
 
 In this lab, you'll be using a school as our domain model.
 
 ## Creating a Simple School Class
 
-To start, open up the **school.py** file in your text editor of choices such as Atom, Sublime, or a simple notepad program. Within this file, create a `School` class definition which will be initialized with the name of the school.
+To start, open up the **school.py** file in your text editor of choices such as Atom, Sublime, or a simple notepad program. Within this file, create a `School` class definition that will be initialized with the name of the school.
 
 > **Note:** the next cell imports an extension, `autoreload`, from IPython. The autoreload extension reloads any imported packages when methods from that package are called. While this is inefficient for stable packages such as NumPy which will be static while working in a notebook, the autoreload extension is quite useful when developing a package yourself. That is, you can update a package such as school.py and then test the effects in a notebook; with the autoreload extension, you'll see the effects of your changes to the package reflected. 
 
@@ -69,7 +69,7 @@ school = School("Middletown High School")
 
 ## Updating the __init__ method
 
-Great! Now, update you `School` definition in school.py to also include a `roster` attribute upon initialization. Initialize the `roster` attribute as an empty dictionary. Later, you'll use this empty roster dictionary to list students of each grade. For example, a future entry in the roster dictionary could be `{"9": ["John Smith", "Jane Donahue"]}`).
+Great! Now, update your `School` definition in school.py to also include a `roster` attribute upon initialization. Initialize the `roster` attribute as an empty dictionary. Later, you'll use this empty roster dictionary to list students of each grade. For example, a future entry in the roster dictionary could be `{"9": ["John Smith", "Jane Donahue"]}`).
 
 
 ```python
